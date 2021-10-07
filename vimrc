@@ -21,15 +21,12 @@ Plug 'dense-analysis/ale'
 Plug 'Vimjas/vim-python-pep8-indent'
 Plug 'rhysd/vim-clang-format'
 Plug 'bfrg/vim-cpp-modern'
+Plug 'psf/black'
 
 call plug#end()
 
 syntax enable
 filetype plugin indent on
-
-" Security - can be removed if vim is updated here
-" https://people.canonical.com/~ubuntu-security/cve/2019/CVE-2019-12735.html
-set nomodeline
 
 " Airline
 let g:airline_powerline_fonts = 1
@@ -42,11 +39,7 @@ let g:ycm_autoclose_preview_window_after_insertion = 1
 let g:ycm_python_binary_path = 'python3'
 let g:ycm_global_ycm_extra_conf = '~/.vim/cpp/.ycm_extra_conf.py'
 let g:ycm_extra_conf_globlist = [
-      \ '~/uni/pt-2/.ycm_extra_conf.py',
-      \ '~/uni/semester-1/pt-1/.ycm_extra_conf.py',
-      \ '~/uni/cp/.ycm_extra_conf.py',
-      \ '~/uni/dyod/.ycm_extra_conf.py',
-      \ '~/code/grizzly-prototype/.ycm_extra_conf.py',
+      \ '~/uni/bachelor/semester-1/pt-1/.ycm_extra_conf.py',
       \ ]
 let g:ycm_auto_hover = ''
 
@@ -62,23 +55,27 @@ let g:ale_linters_explicit = 1
 let g:ale_linters = {
 \   'javascript': ['eslint'],
 \   'python': ['flake8'],
-\   'cpp': ['cpplint', 'cppcheck'],
+\   'cpp': ['cpplint'],
 \}
 let g:ale_c_build_dir_names = ['build', 'bin', 'build-release', 'build-debug']
 let g:ale_cpp_cppcheck_options="--enable=style,warning,information --inline-suppr"
+
+" let g:ale_pattern_options = {
+" \  '/evap/': { 'ale_linters': {'python': ['flake8', 'pylint']} }
+" \}
 
 " Workaround for closing location list when a buffer is deleted (:bd)
 cabbrev <silent> bd <C-r>=(getcmdtype()==#':' && getcmdpos()==1 ? 'lclose\|bdelete' : 'bd')<CR>
 
 " FZF
 nnoremap <c-p> :Files<cr>
-let g:fzf_preview_window = ''
-augroup fzf
-  autocmd!
-  autocmd! FileType fzf
-  autocmd  FileType fzf set laststatus=0 noshowmode noruler
-    \| autocmd BufLeave <buffer> set laststatus=2 showmode ruler
-augroup END
+let g:fzf_preview_window = []           " no preview
+let g:fzf_layout = { 'down': '30%' }    " bottom-dock instead of hover
+
+" don't show statusline inside the FZF window
+autocmd! FileType fzf
+autocmd  FileType fzf set laststatus=0 noshowmode noruler
+      \| autocmd BufLeave <buffer> set laststatus=2 showmode ruler
 
 function s:build_quickfix_list(lines)
   if (len(a:lines) == 1)
@@ -90,10 +87,8 @@ function s:build_quickfix_list(lines)
   endif
 endfunction
 
+" Allow selecting multiple entries in :Files just as in :Rg
 let g:fzf_action = {'enter': function('s:build_quickfix_list')}
-
-" vim-commentary uses commentstring, which by default makes the line /* ... */
-autocmd FileType c,cpp,cs,java setlocal commentstring=//\ %s
 
 " ------------------ Settings
 function! CElseL(command)
@@ -109,6 +104,9 @@ function! CElseL(command)
   endtry
 endfunction
 
+" vim-commentary uses commentstring, which by default makes the line /* ... */
+autocmd FileType c,cpp,cs,java setlocal commentstring=//\ %s
+
 " Indentation
 set tabstop=4           " 1 tab = 4 spaces
 set shiftwidth=4
@@ -121,10 +119,7 @@ set list
 " Show 80th, 100th and 120th column
 let &colorcolumn="80,100,120"
 
-" Don't wrap by default
-set nowrap
-
-" Behaviour
+" Behavior
 set clipboard=unnamed   " share OS clipboard
 set autoread            " skip file reload question
 set number              " show line number instead of 0
@@ -132,6 +127,7 @@ set relativenumber      " relative line numbers
 set ttyfast             " faster redrawing
 set scrolloff=3         " always 3 lines visible
 set nostartofline       " do not go to start of line when changing buffers
+set nowrap              " no linewrap
 
 " Vim command Autocompletion
 set wildmenu
@@ -151,6 +147,7 @@ set smartcase           " case-sensitive searching for mixed-case expressions
 set incsearch           " search while typing
 set hlsearch            " hilight search results
 set gdefault            " substitute all matches by default
+set shortmess-=S        " show [3/14] on searching
 
 " Own keybindings
 let mapleader = ","
@@ -173,6 +170,9 @@ nnoremap <leader><leader> <C-^>
 " Clear match highlighting
 noremap <leader><space> :noh<cr>:call clearmatches()<cr>
 
+" Y yanks to end of the line, not the whole line.
+nnoremap Y y$
+
 " Escape alternatives
 inoremap jf <esc>
 inoremap jF <esc>
@@ -187,6 +187,6 @@ vnoremap / /\v
 map ß /
 
 " Visual line nav, not real line nav
-" For navigatin into wrapped lines
+" For navigating into wrapped lines
 noremap j gj
 noremap k gk
