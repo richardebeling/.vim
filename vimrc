@@ -13,7 +13,6 @@ Plug 'tpope/vim-commentary'
 Plug 'tpope/vim-surround'
 Plug 'tpope/vim-sleuth'
 Plug 'Valloric/YouCompleteMe'
-Plug 'lifepillar/vim-solarized8'
 Plug 'christoomey/vim-tmux-navigator'
 Plug 'junegunn/fzf.vim'
 Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
@@ -22,6 +21,9 @@ Plug 'Vimjas/vim-python-pep8-indent'
 Plug 'rhysd/vim-clang-format'
 Plug 'bfrg/vim-cpp-modern'
 Plug 'psf/black'
+
+Plug 'lifepillar/vim-solarized8'
+Plug 'lifepillar/vim-gruvbox8'
 
 call plug#end()
 
@@ -43,9 +45,16 @@ let g:ycm_extra_conf_globlist = [
       \ ]
 let g:ycm_auto_hover = ''
 
-" Solarized Color Scheme
+" Color Scheme
 set termguicolors
 set background=dark
+
+let g:gruvbox_italics = 1
+let g:gruvbox_filetype_hi_groups = 1
+
+let g:solarized_italics = 1
+let g:solarized_filetype_hi_groups = 1
+
 colorscheme solarized8
 
 let &t_8f = "\<Esc>[38;2;%lu;%lu;%lum"
@@ -147,7 +156,6 @@ set smartcase           " case-sensitive searching for mixed-case expressions
 set incsearch           " search while typing
 set hlsearch            " hilight search results
 set gdefault            " substitute all matches by default
-set shortmess-=S        " show [3/14] on searching
 
 " Own keybindings
 let mapleader = ","
