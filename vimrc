@@ -24,6 +24,7 @@ Plug 'psf/black'
 
 Plug 'lifepillar/vim-solarized8'
 Plug 'lifepillar/vim-gruvbox8'
+Plug 'ayu-theme/ayu-vim'
 
 call plug#end()
 
@@ -55,7 +56,7 @@ let g:gruvbox_filetype_hi_groups = 1
 let g:solarized_italics = 1
 let g:solarized_filetype_hi_groups = 1
 
-colorscheme solarized8
+colorscheme gruvbox8
 
 let &t_8f = "\<Esc>[38;2;%lu;%lu;%lum"
 let &t_8b = "\<Esc>[48;2;%lu;%lu;%lum"
@@ -112,6 +113,9 @@ function! CElseL(command)
     echo v:exception
   endtry
 endfunction
+
+" old regexpengine is faster for ruby, and it also feels faster for vimrc
+set regexpengine=1
 
 " vim-commentary uses commentstring, which by default makes the line /* ... */
 autocmd FileType c,cpp,cs,java setlocal commentstring=//\ %s

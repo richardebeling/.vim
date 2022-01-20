@@ -14,7 +14,7 @@ SAVEHIST=1000000
 
 # Command aliasses
 alias caja='caja "$PWD"'
-alias rg="rg -S"
+alias rg="rg -S --hidden"
 alias gd="git diff -- ':!package-lock.json' ':!yarn.lock'"
 
 # NVM
@@ -37,28 +37,20 @@ export VISUAL=vim
 export EDITOR="$VISUAL"
 
 _gen_fzf_default_opts() {
-  local base03="234"
-  local base02="235"
-  local base01="240"
-  local base00="241"
-  local base0="244"
-  local base1="245"
-  local base2="254"
-  local base3="230"
-  local yellow="136"
-  local orange="166"
-  local red="160"
-  local magenta="125"
-  local violet="61"
-  local blue="33"
-  local cyan="37"
-  local green="64"
+  local base2="#eee8d5"
+  local yellow="#b58900"
 
-  # Solarized Dark color scheme for fzf
   export FZF_DEFAULT_OPTS="
-    --color fg:-1,bg:-1,hl:$blue,fg+:$base2,bg+:$base02,hl+:$blue
-    --color info:$yellow,prompt:$yellow,pointer:$base3,marker:$base3,spinner:$yellow
+    --color fg:-1,bg:-1,hl:4,fg+:$base2,bg+:0,hl+:4
+    --color info:$yellow,prompt:$yellow,pointer:-1,marker:-1,spinner:$yellow
     --bind alt-a:select-all,alt-d:deselect-all,alt-t:toggle-all
   "
+  export FZF_DEFAULT_COMMAND="rg --files --hidden"
+  # Gruvbox colors
+  # export FZF_DEFAULT_OPTS="
+  #   --color fg:#ebdbb2,bg:#282828,hl:#fabd2f,fg+:#ebdbb2,bg+:#3c3836,hl+:#fabd2f
+  #   --color info:#83a598,prompt:#bdae93,spinner:#fabd2f,pointer:#83a598,marker:#fe8019,header:#665c54
+  #   --bind alt-a:select-all,alt-d:deselect-all,alt-t:toggle-all
+  # "
 }
 _gen_fzf_default_opts
