@@ -115,10 +115,13 @@ function! CElseL(command)
 endfunction
 
 " old regexpengine is faster for ruby, and it also feels faster for vimrc
-set regexpengine=1
+" set regexpengine=1
 
 " vim-commentary uses commentstring, which by default makes the line /* ... */
 autocmd FileType c,cpp,cs,java setlocal commentstring=//\ %s
+
+" Allow opening django templates with gf
+set path+=templates,include
 
 " Indentation
 set tabstop=4           " 1 tab = 4 spaces
