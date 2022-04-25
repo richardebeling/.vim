@@ -37,13 +37,13 @@ set laststatus=2 " Always show the status bar
 set t_Co=256     " Colors
 
 " YouCompleteMe
+let g:ycm_clangd_uses_ycmd_caching = 0
+let g:ycm_clangd_binary_path = exepath("clangd")
+" let g:ycm_clangd_args = ['-log=verbose', '-pretty']
+
 let g:ycm_add_preview_to_completeopt = 1
 let g:ycm_autoclose_preview_window_after_insertion = 1
 let g:ycm_python_binary_path = 'python3'
-let g:ycm_global_ycm_extra_conf = '~/.vim/cpp/.ycm_extra_conf.py'
-let g:ycm_extra_conf_globlist = [
-      \ '~/uni/bachelor/semester-1/pt-1/.ycm_extra_conf.py',
-      \ ]
 let g:ycm_auto_hover = ''
 
 " Color Scheme
@@ -65,7 +65,7 @@ let g:ale_linters_explicit = 1
 let g:ale_linters = {
 \   'javascript': ['eslint'],
 \   'python': ['flake8'],
-\   'cpp': ['cpplint'],
+\   'cpp': [''],
 \}
 let g:ale_c_build_dir_names = ['build', 'bin', 'build-release', 'build-debug']
 let g:ale_cpp_cppcheck_options="--enable=style,warning,information --inline-suppr"
