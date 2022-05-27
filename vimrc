@@ -65,7 +65,7 @@ let g:ale_linters_explicit = 1
 let g:ale_linters = {
 \   'javascript': ['eslint'],
 \   'python': ['flake8'],
-\   'cpp': [''],
+\   'cpp': ['cpplint', 'cppcheck', 'flawfinder'],
 \}
 let g:ale_c_build_dir_names = ['build', 'bin', 'build-release', 'build-debug']
 let g:ale_cpp_cppcheck_options="--enable=style,warning,information --inline-suppr"
@@ -86,6 +86,8 @@ let g:fzf_layout = { 'down': '30%' }    " bottom-dock instead of hover
 autocmd! FileType fzf
 autocmd  FileType fzf set laststatus=0 noshowmode noruler
       \| autocmd BufLeave <buffer> set laststatus=2 showmode ruler
+
+autocmd FileType qf setlocal wrap
 
 function s:build_quickfix_list(lines)
   if (len(a:lines) == 1)
