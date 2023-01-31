@@ -1,0 +1,19 @@
+cmake-build-*/
+build*/
+
+# vim files
+*.swp
+
+# clangd
+.cache
+
+# to have a local compile_commands.json symlink into a build folder
+compile_commands.json
+
+# For ripgrep (to make some .gitignored files show up in ripgrep)
+.ignore
+
+# I like to have cpplint running, even if the repo doesn't use it
+CPPLINT.cfg
+
+todo.txt

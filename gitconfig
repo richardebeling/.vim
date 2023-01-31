@@ -12,3 +12,6 @@
 	lg = log --color --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset' --abbrev-commit
 [core]
 	pager = /usr/share/doc/git/contrib/diff-highlight/diff-highlight | less -F -X
+	excludesfile = ~/.vim/global_gitignore
+[pull]
+	ff = only
