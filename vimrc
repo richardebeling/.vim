@@ -65,7 +65,7 @@ let g:ale_linters_explicit = 1
 let g:ale_linters = {
 \   'javascript': ['eslint'],
 \   'python': ['flake8'],
-\   'cpp': ['cpplint', 'cppcheck', 'flawfinder'],
+\   'cpp': ['cpplint', 'flawfinder'],
 \}
 let g:ale_c_build_dir_names = ['build', 'bin', 'build-release', 'build-debug']
 let g:ale_cpp_cppcheck_options="--enable=style,warning,information --inline-suppr"
@@ -84,8 +84,8 @@ let g:fzf_layout = { 'down': '30%' }    " bottom-dock instead of hover
 
 " don't show statusline inside the FZF window
 autocmd! FileType fzf
-autocmd  FileType fzf set laststatus=0 noshowmode noruler
-      \| autocmd BufLeave <buffer> set laststatus=2 showmode ruler
+autocmd  FileType fzf set laststatus=0 noruler
+      \| autocmd BufLeave <buffer> set laststatus=2 ruler
 
 autocmd FileType qf setlocal wrap
 
@@ -146,6 +146,7 @@ set ttyfast             " faster redrawing
 set scrolloff=3         " always 3 lines visible
 set nostartofline       " do not go to start of line when changing buffers
 set nowrap              " no linewrap
+set noshowmode          " don't show new mode in status line
 
 " Vim command Autocompletion
 set wildmenu
