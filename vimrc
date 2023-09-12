@@ -168,7 +168,8 @@ set hlsearch            " hilight search results
 set gdefault            " substitute all matches by default
 
 " Own keybindings
-let mapleader = ","
+nnoremap <SPACE> <Nop>
+let mapleader = " "
 
 " start global search for word under cursor with <leader>f
 nnoremap <leader>f :Rg <c-r>=expand("<cword>")<cr>
@@ -183,10 +184,10 @@ nnoremap <leader>g :YcmCompleter GoToDeclaration<CR>
 nnoremap <leader>G :YcmCompleter GoToDefinition<CR>
 
 " Quick Buffer Switching
-nnoremap <leader><leader> <C-^>
+nnoremap <leader><tab> <C-^>
 
 " Clear match highlighting
-noremap <leader><space> :noh<cr>:call clearmatches()<cr>
+noremap <leader><leader> :noh<cr>:call clearmatches()<cr>
 
 " Y yanks to end of the line, not the whole line.
 nnoremap Y y$
