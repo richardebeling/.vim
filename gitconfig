@@ -4,7 +4,7 @@
 # 	path = ~/.vim/gitconfig
 
 [user]
-	email = He3lixxx@users.noreply.github.com
+	email = dev@richardebeling.de
 	name = Richard Ebeling
 [push]
 	default = simple
