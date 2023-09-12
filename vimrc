@@ -38,7 +38,7 @@ set t_Co=256     " Colors
 
 " YouCompleteMe
 let g:ycm_clangd_uses_ycmd_caching = 0
-let g:ycm_clangd_binary_path = exepath("clangd")
+let g:ycm_clangd_binary_path = exepath("clangd-15")
 " let g:ycm_clangd_args = ['-log=verbose', '-pretty']
 
 let g:ycm_add_preview_to_completeopt = 1
@@ -129,6 +129,7 @@ set path+=templates,include
 set tabstop=4           " 1 tab = 4 spaces
 set shiftwidth=4
 set expandtab           " to spaces
+autocmd FileType text setlocal autoindent
 
 " Whitespace Rendering
 set listchars=tab:▸\ ,trail:·
