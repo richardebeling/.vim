@@ -22,9 +22,7 @@ Plug 'rhysd/vim-clang-format'
 Plug 'bfrg/vim-cpp-modern'
 Plug 'psf/black'
 
-Plug 'lifepillar/vim-solarized8'
 Plug 'lifepillar/vim-gruvbox8'
-Plug 'ayu-theme/ayu-vim'
 
 call plug#end()
 
