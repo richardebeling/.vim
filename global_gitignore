@@ -1,6 +1,9 @@
 cmake-build-*/
 build*/
 
+tags
+codecov.yaml
+
 # vim files
 *.swp
 
@@ -17,3 +20,4 @@ compile_commands.json
 CPPLINT.cfg
 
 todo.txt
+todo.md

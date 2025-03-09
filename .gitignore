@@ -1,6 +1,8 @@
 .netrwhist
 *.swp
 
+
+tmux-resurrect/
 autoload/
 plugged/
 tmux-bundle/

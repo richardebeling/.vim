@@ -1,17 +1,46 @@
-# put this in ~/.gitconfig:
-#
-# [include]
-# 	path = ~/.vim/gitconfig
-
+# ~/.config/git/config
 [user]
 	email = dev@richardebeling.de
 	name = Richard Ebeling
-[push]
-	default = simple
+
 [alias]
 	lg = log --color --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset' --abbrev-commit
+	pushf = push --force-with-lease --force-if-includes
+	fetchf = fetch --force --tags --prune
+	blamef = blame -w -C -C
+
 [core]
-	pager = /usr/share/doc/git/contrib/diff-highlight/diff-highlight | less -F -X
+	pager = delta
 	excludesfile = ~/.vim/global_gitignore
+
+[push]
+	default = simple
+
 [pull]
 	ff = only
+
+[rebase]
+	updateRefs = true  # update base branches of stacked branches when rebasing
+
+[feature]
+# 	manyFiles = true  # breaks git-absorb, should be fixed in the future (see git-absorb#81)
+
+[rerere]
+	enabled = true
+
+[interactive]
+	diffFilter = delta --color-only
+
+[diff]
+	noPrefix = true  # remove a/ and b/ prefixes in git diff
+	colorMoved = default
+
+[merge]
+	conflictstyle = zdiff3
+
+[delta]
+	navigate = true
+	linenumbers = true
+	diff-highlight = true
+	hyperlinks = true
+	keep-plus-minus-markers = true
