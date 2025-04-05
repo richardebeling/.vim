@@ -41,5 +41,7 @@ _gen_fzf_default_opts
   fi
 }
 
+export PATH=${HOME}/.local/bin:${PATH}
+
 # nix: https://nixos.wiki/wiki/Locales
 export LOCALE_ARCHIVE=/usr/lib/locale/locale-archive

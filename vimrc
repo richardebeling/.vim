@@ -27,7 +27,6 @@ if(has('nvim'))
   Plug 'projekt0n/github-nvim-theme', { 'commit': 'c106c9472154d6b2c74b74565616b877ae8ed31d' }
   Plug 'ellisonleao/gruvbox.nvim', { 'commit': '15958f5ee43e144856cd2084ce6c571bfdb44504' }
 else
-  " Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
   Plug 'junegunn/fzf', { 'commit': '10cbac20f96de35acf272ddc4a998868c5694bd9' }
   Plug 'junegunn/fzf.vim', { 'commit': '245eaf8e50fe440729056ce8d4e7e2bb5b1ff9c9' }
 endif
@@ -64,8 +63,6 @@ EOF
   command ToggleDiagnostic lua if(vim.diagnostic.is_enabled()) then vim.diagnostic.disable() else vim.diagnostic.enable() end
 
 lua << EOF
-  vim.opt.signcolumn = 'yes'
-
   local lspconfig_defaults = require('lspconfig').util.default_config
   lspconfig_defaults.capabilities = vim.tbl_deep_extend(
     'force',
