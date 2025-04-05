@@ -11,24 +11,24 @@ Plug 'tpope/vim-commentary', { 'commit': '64a654ef4a20db1727938338310209b6a63f60
 Plug 'tpope/vim-surround', { 'commit': '3d188ed2113431cf8dac77be61b842acb64433d9' }
 Plug 'tpope/vim-sleuth', { 'commit': 'be69bff86754b1aa5adcbb527d7fcd1635a84080' }
 Plug 'christoomey/vim-tmux-navigator', { 'commit': '791dacfcfc8ccb7f6eb1c853050883b03e5a22fe' }
-Plug 'lifepillar/vim-gruvbox8', { 'commit': '4b56d56e287b74758edb4504e23be2d4977d0972' }
+Plug 'lifepillar/vim-gruvbox8', { 'commit': 'f85b7221754cbcf4a9d21eb3a30d3633024be872' }
 
 if(has('nvim'))
   Plug 'neovim/nvim-lspconfig'
   Plug 'nvim-treesitter/nvim-treesitter', { 'do': ':TSUpdate' }
 
-  Plug 'hrsh7th/nvim-cmp', { 'commit': 'c27370703e798666486e3064b64d59eaf4bdc6d5' }
-  Plug 'hrsh7th/cmp-nvim-lsp', { 'commit': '99290b3ec1322070bcfb9e846450a46f6efa50f0' }
-  Plug 'hrsh7th/cmp-buffer', { 'commit': '3022dbc9166796b644a841a02de8dd1cc1d311fa' }
+  Plug 'hrsh7th/nvim-cmp', { 'commit': '059e89495b3ec09395262f16b1ad441a38081d04' }
+  Plug 'hrsh7th/cmp-nvim-lsp', { 'commit': 'a8912b88ce488f411177fc8aed358b04dc246d7b' }
+  Plug 'hrsh7th/cmp-buffer', { 'commit': 'b74fab3656eea9de20a9b8116afa3cfc4ec09657' }
   Plug 'hrsh7th/cmp-nvim-lsp-signature-help', { 'commit': '031e6ba70b0ad5eee49fd2120ff7a2e325b17fa7' }
-  Plug 'ibhagwan/fzf-lua', { 'commit': 'd40d2e7225a18fb3bbb7b9be38c51876d652741d', 'do': 'rm lua/fzf-lua/data/colorschemes.json'}
+  Plug 'ibhagwan/fzf-lua', { 'commit': '566e8050dc1376c5af6ae48e3f2a3ca2a7978d56', 'do': 'rm lua/fzf-lua/data/colorschemes.json'}
 
   Plug 'navarasu/onedark.nvim', { 'commit': '67a74c275d1116d575ab25485d1bfa6b2a9c38a6' }
   Plug 'projekt0n/github-nvim-theme', { 'commit': 'c106c9472154d6b2c74b74565616b877ae8ed31d' }
-  Plug 'ellisonleao/gruvbox.nvim', { 'commit': '15958f5ee43e144856cd2084ce6c571bfdb44504' }
+  Plug 'ellisonleao/gruvbox.nvim', { 'commit': '12b5420b665e8053d74eb075d8a589477333f67d' }
 else
-  Plug 'junegunn/fzf', { 'commit': '10cbac20f96de35acf272ddc4a998868c5694bd9' }
-  Plug 'junegunn/fzf.vim', { 'commit': '245eaf8e50fe440729056ce8d4e7e2bb5b1ff9c9' }
+  Plug 'junegunn/fzf', { 'commit': '93cb3758b5f08a6dbf30c6e3d2e1de9b0be52a63' }
+  Plug 'junegunn/fzf.vim', { 'commit': '1fff637559f29d5edbdb05e03327954a8cd9e406' }
 endif
 
 call plug#end()
