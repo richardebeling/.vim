@@ -134,6 +134,7 @@ lua << EOF
     },
   })
   vim.api.nvim_create_autocmd("DiagnosticChanged", { callback = function() vim.diagnostic.setloclist({open = false}) end })
+  vim.diagnostic.config({ virtual_text = true })
 EOF
 
 " auto completion
