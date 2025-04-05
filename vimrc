@@ -11,7 +11,6 @@ Plug 'tpope/vim-commentary', { 'commit': '64a654ef4a20db1727938338310209b6a63f60
 Plug 'tpope/vim-surround', { 'commit': '3d188ed2113431cf8dac77be61b842acb64433d9' }
 Plug 'tpope/vim-sleuth', { 'commit': 'be69bff86754b1aa5adcbb527d7fcd1635a84080' }
 Plug 'christoomey/vim-tmux-navigator', { 'commit': '791dacfcfc8ccb7f6eb1c853050883b03e5a22fe' }
-Plug 'vim-airline/vim-airline', { 'commit': '7a552f415c48aed33bf7eaa3c50e78504d417913' }
 Plug 'lifepillar/vim-gruvbox8', { 'commit': '4b56d56e287b74758edb4504e23be2d4977d0972' }
 
 if(has('nvim'))
@@ -187,10 +186,12 @@ lua << EOF
 EOF
 endif
 
-" Airline
-let g:airline_powerline_fonts = 1
-let g:airline_theme = 'gruvbox8'
-set laststatus=2 " Always show the status bar
+set statusline=%<%q\ \ %f\ %m%r%w%=%c\ %{FugitiveHead()}\ %l/%L\ [%P]
+if(has('nvim'))
+  set laststatus=3
+else
+  set laststatus=2
+endif
 
 " Color Scheme
 set termguicolors
