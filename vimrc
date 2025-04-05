@@ -50,10 +50,10 @@ lua << EOF
         enable = true,
         additional_vim_regex_highlighting = false,
         disable = function(lang, bufnr)
-          if vim.api.nvim_buf_line_count(bufnr) > 2000 then return true end -- before nvim 0.11 noticable typing lag
           if lang == 'git_rebase' then return true end  -- breaks command highlighting (reword, fixup, ...)
         end
       },
+      indent = { enable = true },
     }
   end
 EOF
