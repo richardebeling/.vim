@@ -6,29 +6,30 @@ set encoding=utf-8
 " ------------------ Plugins
 call plug#begin('~/.vim/plugged')
 Plug 'tpope/vim-sensible', { 'commit': '0ce2d843d6f588bb0c8c7eec6449171615dc56d9' }
-Plug 'tpope/vim-fugitive', { 'commit': '4a745ea72fa93bb15dd077109afbb3d1809383f2' }
+Plug 'tpope/vim-fugitive', { 'commit': '61b51c09b7c9ce04e821f6cf76ea4f6f903e3cf4' }
 Plug 'tpope/vim-commentary', { 'commit': '64a654ef4a20db1727938338310209b6a63f60c9' }
 Plug 'tpope/vim-surround', { 'commit': '3d188ed2113431cf8dac77be61b842acb64433d9' }
 Plug 'tpope/vim-sleuth', { 'commit': 'be69bff86754b1aa5adcbb527d7fcd1635a84080' }
-Plug 'christoomey/vim-tmux-navigator', { 'commit': '791dacfcfc8ccb7f6eb1c853050883b03e5a22fe' }
-Plug 'lifepillar/vim-gruvbox8', { 'commit': 'f85b7221754cbcf4a9d21eb3a30d3633024be872' }
+Plug 'christoomey/vim-tmux-navigator', { 'commit': 'c45243dc1f32ac6bcf6068e5300f3b2b237e576a' }
+Plug 'lifepillar/vim-gruvbox8', { 'commit': '9ac7db13bfe3cffb836f844e567efad71174238a' }
 
 if(has('nvim'))
   Plug 'neovim/nvim-lspconfig'
   Plug 'nvim-treesitter/nvim-treesitter', { 'do': ':TSUpdate' }
+  Plug 'nvim-treesitter/nvim-treesitter-context', { 'commit': 'ec308c7827b5f8cb2dd0ad303a059c945dd21969', 'do': 'rm -rf test/' }
 
   Plug 'hrsh7th/nvim-cmp', { 'commit': '059e89495b3ec09395262f16b1ad441a38081d04' }
   Plug 'hrsh7th/cmp-nvim-lsp', { 'commit': 'a8912b88ce488f411177fc8aed358b04dc246d7b' }
   Plug 'hrsh7th/cmp-buffer', { 'commit': 'b74fab3656eea9de20a9b8116afa3cfc4ec09657' }
   Plug 'hrsh7th/cmp-nvim-lsp-signature-help', { 'commit': '031e6ba70b0ad5eee49fd2120ff7a2e325b17fa7' }
-  Plug 'ibhagwan/fzf-lua', { 'commit': '566e8050dc1376c5af6ae48e3f2a3ca2a7978d56', 'do': 'rm lua/fzf-lua/data/colorschemes.json'}
+  Plug 'ibhagwan/fzf-lua', { 'commit': '9244bd48e0e6167ffe521209d0cfddc70bb70c21', 'do': 'rm lua/fzf-lua/data/colorschemes.json; rm -rf tests/'}
 
-  Plug 'navarasu/onedark.nvim', { 'commit': '67a74c275d1116d575ab25485d1bfa6b2a9c38a6' }
+  Plug 'navarasu/onedark.nvim', { 'commit': 'de495fabe171d48aed5525f002d14414efcecbb2' }
   Plug 'projekt0n/github-nvim-theme', { 'commit': 'c106c9472154d6b2c74b74565616b877ae8ed31d' }
-  Plug 'ellisonleao/gruvbox.nvim', { 'commit': '12b5420b665e8053d74eb075d8a589477333f67d' }
+  Plug 'ellisonleao/gruvbox.nvim', { 'commit': '5e0a460d8e0f7f669c158dedd5f9ae2bcac31437' }
 else
-  Plug 'junegunn/fzf', { 'commit': '93cb3758b5f08a6dbf30c6e3d2e1de9b0be52a63' }
-  Plug 'junegunn/fzf.vim', { 'commit': '1fff637559f29d5edbdb05e03327954a8cd9e406' }
+  Plug 'junegunn/fzf', { 'commit': 'aa259fdc1910acbbeef4562bf41a762ecb428828' }
+  Plug 'junegunn/fzf.vim', { 'commit': '879db51d0965515cdaef9b7f6bdeb91c65d2829e' }
 endif
 
 call plug#end()
@@ -63,13 +64,6 @@ EOF
   command ToggleDiagnostic lua if(vim.diagnostic.is_enabled()) then vim.diagnostic.disable() else vim.diagnostic.enable() end
 
 lua << EOF
-  local lspconfig_defaults = require('lspconfig').util.default_config
-  lspconfig_defaults.capabilities = vim.tbl_deep_extend(
-    'force',
-    lspconfig_defaults.capabilities,
-    require('cmp_nvim_lsp').default_capabilities()
-  )
-
   vim.api.nvim_create_autocmd('LspAttach', {
     desc = 'LSP actions',
     callback = function(event)
@@ -87,7 +81,7 @@ lua << EOF
     end,
   })
 
-  require('lspconfig').clangd.setup({
+  vim.lsp.config['clangd'] = {
     cmd = {
       "clangd",
       "-j", "4",
@@ -96,9 +90,10 @@ lua << EOF
       "--background-index",
       "--clang-tidy",
     }
-  })
+  }
+  vim.lsp.enable('clangd')
 
-  require('lspconfig').pylsp.setup({
+  vim.lsp.config['pylsp'] = {
     settings = {
       pylsp = {
         plugins = {
@@ -118,9 +113,10 @@ lua << EOF
         }
       }
     }
-  })
-  require('lspconfig').lua_ls.setup({})
-  require('lspconfig').ruff.setup({
+  }
+  vim.lsp.enable('pylsp')
+
+  vim.lsp.config['ruff'] = {
     init_options = {
       settings = {
         organizeImports = true,
@@ -132,7 +128,11 @@ lua << EOF
         },
       },
     },
-  })
+  }
+  vim.lsp.enable('ruff')
+
+  vim.lsp.enable('lua_ls')
+
   vim.api.nvim_create_autocmd("DiagnosticChanged", { callback = function() vim.diagnostic.setloclist({open = false}) end })
   vim.diagnostic.config({ virtual_text = true })
 EOF
@@ -329,7 +329,7 @@ nnoremap <silent><leader>p :call CElseL("previous")<cr>
 nnoremap <leader><tab> <C-^>
 
 " Open header/source files
-nnoremap <leader>o :ClangdSwitchSourceHeader<cr>
+nnoremap <leader>o :LspClangdSwitchSourceHeader<cr>
 
 " Clear match highlighting
 noremap <leader><leader> :noh<cr>:call clearmatches()<cr>
