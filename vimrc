@@ -6,30 +6,30 @@ set encoding=utf-8
 " ------------------ Plugins
 call plug#begin('~/.vim/plugged')
 Plug 'tpope/vim-sensible', { 'commit': '0ce2d843d6f588bb0c8c7eec6449171615dc56d9' }
-Plug 'tpope/vim-fugitive', { 'commit': '61b51c09b7c9ce04e821f6cf76ea4f6f903e3cf4' }
+Plug 'tpope/vim-fugitive', { 'commit': '3b753cf8c6a4dcde6edee8827d464ba9b8c4a6f0' }
 Plug 'tpope/vim-commentary', { 'commit': '64a654ef4a20db1727938338310209b6a63f60c9' }
 Plug 'tpope/vim-surround', { 'commit': '3d188ed2113431cf8dac77be61b842acb64433d9' }
 Plug 'tpope/vim-sleuth', { 'commit': 'be69bff86754b1aa5adcbb527d7fcd1635a84080' }
-Plug 'christoomey/vim-tmux-navigator', { 'commit': 'c45243dc1f32ac6bcf6068e5300f3b2b237e576a' }
-Plug 'lifepillar/vim-gruvbox8', { 'commit': '9ac7db13bfe3cffb836f844e567efad71174238a' }
+Plug 'christoomey/vim-tmux-navigator', { 'commit': 'e41c431a0c7b7388ae7ba341f01a0d217eb3a432' }
+Plug 'lifepillar/vim-gruvbox8', { 'commit': '4fe376f2829bad27dea8b7e15eba044e1a2d95f6' }
 
 if(has('nvim'))
   Plug 'neovim/nvim-lspconfig'
   Plug 'nvim-treesitter/nvim-treesitter', { 'do': ':TSUpdate' }
-  Plug 'nvim-treesitter/nvim-treesitter-context', { 'commit': 'ec308c7827b5f8cb2dd0ad303a059c945dd21969', 'do': 'rm -rf test/' }
+  Plug 'nvim-treesitter/nvim-treesitter-context', { 'commit': 'b0c45cefe2c8f7b55fc46f34e563bc428ef99636', 'do': 'rm -rf Makefile test/' }
 
-  Plug 'hrsh7th/nvim-cmp', { 'commit': '059e89495b3ec09395262f16b1ad441a38081d04' }
-  Plug 'hrsh7th/cmp-nvim-lsp', { 'commit': 'a8912b88ce488f411177fc8aed358b04dc246d7b' }
+  Plug 'hrsh7th/nvim-cmp', { 'commit': 'a1d504892f2bc56c2e79b65c6faded2fd21f3eca' }
+  Plug 'hrsh7th/cmp-nvim-lsp', { 'commit': 'cbc7b02bb99fae35cb42f514762b89b5126651ef' }
   Plug 'hrsh7th/cmp-buffer', { 'commit': 'b74fab3656eea9de20a9b8116afa3cfc4ec09657' }
-  Plug 'hrsh7th/cmp-nvim-lsp-signature-help', { 'commit': '031e6ba70b0ad5eee49fd2120ff7a2e325b17fa7' }
-  Plug 'ibhagwan/fzf-lua', { 'commit': '9244bd48e0e6167ffe521209d0cfddc70bb70c21', 'do': 'rm lua/fzf-lua/data/colorschemes.json; rm -rf tests/'}
+  Plug 'hrsh7th/cmp-nvim-lsp-signature-help', { 'commit': 'fd3e882e56956675c620898bf1ffcf4fcbe7ec84' }
+  Plug 'ibhagwan/fzf-lua', { 'commit': '9f0432fdd7825ab163520045831a40b6df82ea28', 'do': 'rm lua/fzf-lua/data/colorschemes.json; rm -rf tests/'}
 
-  Plug 'navarasu/onedark.nvim', { 'commit': 'de495fabe171d48aed5525f002d14414efcecbb2' }
+  Plug 'navarasu/onedark.nvim', { 'commit': '213c23ae45a04797572242568d5d51937181792d' }
   Plug 'projekt0n/github-nvim-theme', { 'commit': 'c106c9472154d6b2c74b74565616b877ae8ed31d' }
-  Plug 'ellisonleao/gruvbox.nvim', { 'commit': '5e0a460d8e0f7f669c158dedd5f9ae2bcac31437' }
+  Plug 'ellisonleao/gruvbox.nvim', { 'commit': '334d5fd49fc8033f26408425366c66c6390c57bb' }
 else
-  Plug 'junegunn/fzf', { 'commit': 'aa259fdc1910acbbeef4562bf41a762ecb428828' }
-  Plug 'junegunn/fzf.vim', { 'commit': '879db51d0965515cdaef9b7f6bdeb91c65d2829e' }
+  Plug 'junegunn/fzf', { 'commit': '18315000185a6e6461b9b4aa4a4cb6cd164e0e35' }
+  Plug 'junegunn/fzf.vim', { 'commit': '34a564c81f36047f50e593c1656f4580ff75ccca' }
 endif
 
 call plug#end()
