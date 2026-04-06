@@ -221,11 +221,6 @@ else
   let g:fzf_layout = { 'down': '30%' }    " bottom-dock instead of hover
 endif
 
-" don't show statusline inside the FZF window
-autocmd! FileType fzf
-autocmd  FileType fzf set laststatus=0 noruler
-      \| autocmd BufLeave <buffer> set laststatus=2 ruler
-
 autocmd FileType qf setlocal wrap
 
 function s:build_quickfix_list(lines)
